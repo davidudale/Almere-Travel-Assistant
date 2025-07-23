@@ -2,33 +2,29 @@ import google.generativeai as genai
 
 genai.configure(api_key="AIzaSyCyRjqmkEDptcVSZPkmIg-QeTddgBVNyCY")
 
-generation_config = {
-    "temperature": 0.7,
-    "top_p": 0.9,
-    "top_k": 40,
-    "max_output_tokens": 1024,
-}
-
-model = genai.GenerativeModel(
-    model_name="gemini-1.5-flash",
-    generation_config=generation_config,
-)
+model = genai.GenerativeModel(model_name="gemini-1.5-flash")
 
 def GenerateResponse(user_input, profile):
-    prompt = f"""
-You are Almere Travel Assistant, a smart commuter assistant for Almere citizens.
+    try:
+        prompt = f"""
+You are TravelMate, a smart assistant trained to help commuters in Almere using real survey insights.
 
-User Profile:
-- Preferred Mode: {profile.get('mode')}
+User profile:
+- Mode: {profile.get('mode')}
 - Flexibility: {profile.get('flexibility')}
 - Punctuality: {profile.get('punctuality')}
-- Environmental Concern: {profile.get('environmental_concern')}
+- Environment concern: {profile.get('environmental_concern')}
 
+Context:
+- Bus crowding is highest 7:30–9:00 and 16:30–18:00.
 
-Use behavioral logic, survey insights, and TPB to offer friendly, practical travel advice for avoiding congestion and improving commuting experience.
+- Students bike more and shift times.
+- Workers prefer predictability.
 
-User says: '{user_input}'
-Assistant Response:
-"""
-    response = model.generate_content(prompt)
-    return response.text
+User: {user_input}
+Response:
+        """
+        return model.generate_content(prompt).text
+    except Exception as e:
+        print(f"Error: {e}")
+        return "⚠️ Sorry, I'm currently unavailable due to high traffic. Please try again later."
