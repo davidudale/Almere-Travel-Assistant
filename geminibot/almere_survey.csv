@@ -1,0 +1,4 @@
+age,employment,mode,tpb_convenience,tpb_norms,tpb_control,tpb_shift,tpb_environment,tpb_self_control,tpb_preplan,tpb_ignore_crowd
+23,Student,Bus,5,4,5,5,4,4,2,1
+42,Full-time,Bus,4,3,2,3,3,2,4,2
+35,Part-time,Bus,3,2,3,4,5,3,3,3
