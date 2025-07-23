@@ -21,6 +21,8 @@ Context:
 - Students bike more and shift times.
 - Workers prefer predictability.
 
+Respond as a helpful assistant suggesting realistic travel actions Behavior-based decision-making (Theory of Planned Behavior).
+
 User: {user_input}
 Response:
         """
